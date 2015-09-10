@@ -1,0 +1,29 @@
+<!DOCTYPE crossway-bible SYSTEM "http://www.gnpcb.org/esv/share/schemas/crossway.base.entities.dtd">
+    <crossway-bible class="passage-query">
+    <passage>
+    <reference>Psalm 117</reference>
+    <surrounding-chapters>
+    <previous>Psalm 116</previous>
+    <current class="full-chapter">Psalm 117</current>
+    <next>Psalm 118</next>
+    </surrounding-chapters>
+    <content>
+    <verse-unit unit-id="19117001"><marker class="begin-verse" mid="v19117001"/>
+    <begin-chapter num="117"/><heading>The <span class="divine-name">Lord</span>&apos;s Faithfulness Endures Forever</heading>
+    <begin-block-indent/>
+    <begin-paragraph class="line-group"/>
+    <begin-line/><verse-num begin-chapter="117">1</verse-num>Praise the <span class="divine-name">Lord</span>, all nations!<end-line class="br"/>
+    <begin-line class="indent"/>Extol him, all peoples!<end-line class="br"/>
+    </verse-unit>
+    <verse-unit unit-id="19117002"><marker class="begin-verse" mid="v19117002"/>
+    <begin-line/><verse-num>2</verse-num>For great is his steadfast love toward us,<end-line class="br"/>
+    <begin-line class="indent"/>and the faithfulness of the <span class="divine-name">Lord</span> endures forever.<end-line class="br"/>
+    <begin-line/>Praise the <span class="divine-name">Lord</span>!<end-line/>
+    <end-paragraph/>
+    <end-block-indent/>
+    <end-chapter/>
+    </verse-unit>
+    </content>
+    </passage>
+    <copyright>The Holy Bible, English Standard Version copyright (c)2001 by Crossway Bibles, a division of Good News Publishers. Used by permission. All rights reserved. http://www.esv.org</copyright>
+    </crossway-bible>
