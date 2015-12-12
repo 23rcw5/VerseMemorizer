@@ -1,12 +1,16 @@
 package ryan.versememorizer;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,7 +37,6 @@ public class NavDrawer extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
-
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -48,14 +51,7 @@ public class NavDrawer extends AppCompatActivity
     public void onResume()
     {
         super.onResume();
-        try {
-            TextView tv = (TextView)  findViewById(R.id.textView3);
-            AsyncTask at = new ESVService().execute("daily");
-            tv.append(at.get().toString());
-        }catch(Exception ex)
-        {
-            Log.println(7,"Exception", ex.getMessage());
-        }
+
 
     }
 
@@ -63,24 +59,73 @@ public class NavDrawer extends AppCompatActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         Fragment objFragment = null;
+        FragmentManager manager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction trans = manager.beginTransaction();
 
         switch (position)
         {
             case 0:
-                objFragment = new menu_fragMain();
+                objFragment = manager.findFragmentByTag("fragMain");
+                if(objFragment != null) {
+                    trans.replace(R.id.container, objFragment, "fragMain");
+                    trans.commit();
+                    //manager.popBackStack();
+                }
+                else {
+                    objFragment = new menu_fragMain();
+                    trans.replace(R.id.container, objFragment, "fragMain");
+                    //trans.addToBackStack(null);
+                    trans.commit();
+                }
                 break;
             case 1:
-                objFragment = new menu_fragVerses();
+                objFragment = manager.findFragmentByTag("fragVerses");
+                if(objFragment != null) {
+                    trans.replace(R.id.container, objFragment, "fragVerses");
+                    trans.commit();
+                    //manager.popBackStack();
+                }
+                else {
+                    objFragment = new menu_fragVerses();
+                    trans.replace(R.id.container, objFragment, "fragVerses");
+                   // trans.addToBackStack(null);
+                    trans.commit();
+                }
                 break;
             case 2:
-                objFragment = new menu_fragQuiz();
+                objFragment = manager.findFragmentByTag("fragQuiz");
+                if(objFragment != null) {
+                    trans.replace(R.id.container, objFragment, "fragQuiz");
+                    trans.commit();
+                    //manager.popBackStack();
+                }
+                else {
+                    objFragment = new menu_fragQuiz();
+                    trans.replace(R.id.container, objFragment, "fragQuiz");
+                    //trans.addToBackStack(null);
+                    trans.commit();
+                }
+                break;
+            case 3:
+                objFragment = manager.findFragmentByTag("fragAdd");
+                if(objFragment != null) {
+                    trans.replace(R.id.container, objFragment, "fragAdd");
+                    trans.commit();
+                    //manager.popBackStack();
+                }
+                else {
+                    objFragment = new menu_fragAdd();
+                    trans.replace(R.id.container, objFragment, "fragAdd");
+                    //trans.addToBackStack(null);
+                    trans.commit();
+                }
                 break;
         }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+       /* FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, objFragment)
-                .commit();
+                .commit();*/
     }
 
     public void onSectionAttached(int number) {
@@ -94,6 +139,10 @@ public class NavDrawer extends AppCompatActivity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 break;
+            case 4:
+                //mTitle = getString();
+                break;
+
         }
     }
 
