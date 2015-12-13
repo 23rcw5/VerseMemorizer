@@ -1,5 +1,7 @@
 package ryan.versememorizer;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 
 /**
  * Created by Ryan on 12/11/2015.
@@ -51,9 +54,30 @@ public class menu_fragAdd extends Fragment {
                         String end = txt.getText().toString().replace("Verse End: ", "");
                         AsyncTask s = new ESVService().execute(book, ch + ":" + start + "-" + end);
                         try {
+                            String temp = book + " " + ch + ":" +start;
+                            if(start.equals(end)) temp += "-" + end;
                             String verse = s.get().toString();
+                            verse = verse.substring((temp.length()-1));
+                            // Gets the data repository in write mode
+                            FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getContext());
+                            SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+                            // Create a new map of values, where column names are the keys
+                            ContentValues values = new ContentValues();
+                            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_BOOK, book);
+                            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_CH, ch);
+                            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_START, start);
+                            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_END, end);
+                            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TEXT, verse);
+
+                            // Insert the new row, returning the primary key value of the new row
+                            long newRowId;
+                            newRowId = db.insert(
+                                    FeedReaderContract.FeedEntry.TABLE_NAME,
+                                    null,
+                                    values);
                             TextView tv = (TextView) rootview.findViewById(R.id.textView5);
-                            tv.append(verse);
+                            tv.append(""+newRowId);
                         } catch (Exception e) {
                         }
                         return true;
