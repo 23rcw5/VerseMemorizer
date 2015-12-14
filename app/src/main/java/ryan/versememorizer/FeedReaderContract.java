@@ -19,6 +19,7 @@ public final class FeedReaderContract {
         public static final String COLUMN_NAME_END = "end";
         public static final String COLUMN_NAME_TEXT = "text";
         public static final String COLUMN_NAME_MEMORIZED = "memorized";
+        public static final String COLUMN_NAME_NAME = "name";
 
         private static final String TEXT_TYPE = " TEXT";
         private static final String COMMA_SEP = ",";
@@ -30,7 +31,8 @@ public final class FeedReaderContract {
                         FeedEntry.COLUMN_NAME_START + " INTEGER" + COMMA_SEP +
                         FeedEntry.COLUMN_NAME_END + " INTEGER" + COMMA_SEP +
                         FeedEntry.COLUMN_NAME_TEXT + TEXT_TYPE + COMMA_SEP +
-                        FeedEntry.COLUMN_NAME_MEMORIZED + " INTEGER" +
+                        FeedEntry.COLUMN_NAME_MEMORIZED + " INTEGER" + COMMA_SEP +
+                        FeedEntry.COLUMN_NAME_NAME + TEXT_TYPE +
                 " )";
         public static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;

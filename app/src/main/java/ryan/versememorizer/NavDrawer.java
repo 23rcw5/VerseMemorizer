@@ -12,12 +12,15 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class NavDrawer extends AppCompatActivity
@@ -45,6 +48,7 @@ public class NavDrawer extends AppCompatActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     @Override
@@ -160,8 +164,8 @@ public class NavDrawer extends AppCompatActivity
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.nav_drawer, menu);
-            restoreActionBar();
+           // getMenuInflater().inflate(R.menu.nav_drawer, menu);
+           // restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);

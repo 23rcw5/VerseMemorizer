@@ -69,7 +69,7 @@ public class menu_fragAdd extends Fragment {
                             values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_START, start);
                             values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_END, end);
                             values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TEXT, verse);
-
+                            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_NAME, temp);
                             // Insert the new row, returning the primary key value of the new row
                             long newRowId;
                             newRowId = db.insert(
